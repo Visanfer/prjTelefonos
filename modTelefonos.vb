@@ -1,13 +1,11 @@
-Option Explicit On 
+Option Explicit On
 Imports prjControl
-Imports CrystalDecisions.CrystalReports.Engine
 Imports MySql.Data.MySqlClient
 
 Public Module modTelefonos
     Public gnLlave As Integer          ' llave actual de seguridad
     Public goUsuario As New clsUsuario
-    Public goProfile As New clsProfile
-    Public goListado As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+    Public goProfile As New clsProfileLocal
 
     Public Sub Main()
         Dim loPrincipal As New frmTelefonos

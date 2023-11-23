@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dtsTelefonos" targetNamespace="http://tempuri.org/dtsTelefonos.xsd" xmlns:mstns="http://tempuri.org/dtsTelefonos.xsd" xmlns="http://tempuri.org/dtsTelefonos.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dtsTelefonos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dtsTelefonos" msprop:Generator_UserDSName="dtsTelefonos">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Telefonos" msprop:Generator_TableClassName="TelefonosDataTable" msprop:Generator_TableVarName="tableTelefonos" msprop:Generator_TablePropName="Telefonos" msprop:Generator_RowDeletingName="TelefonosRowDeleting" msprop:Generator_RowChangingName="TelefonosRowChanging" msprop:Generator_RowEvHandlerName="TelefonosRowChangeEventHandler" msprop:Generator_RowDeletedName="TelefonosRowDeleted" msprop:Generator_UserTableName="Telefonos" msprop:Generator_RowChangedName="TelefonosRowChanged" msprop:Generator_RowEvArgName="TelefonosRowChangeEvent" msprop:Generator_RowClassName="TelefonosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:short" />
+              <xs:element name="telef1" msprop:Generator_ColumnVarNameInTable="columntelef1" msprop:Generator_ColumnPropNameInRow="telef1" msprop:Generator_ColumnPropNameInTable="telef1Column" msprop:Generator_UserColumnName="telef1" type="xs:string" minOccurs="0" />
+              <xs:element name="desc1" msprop:Generator_ColumnVarNameInTable="columndesc1" msprop:Generator_ColumnPropNameInRow="desc1" msprop:Generator_ColumnPropNameInTable="desc1Column" msprop:Generator_UserColumnName="desc1" type="xs:string" minOccurs="0" />
+              <xs:element name="corto1" msprop:Generator_ColumnVarNameInTable="columncorto1" msprop:Generator_ColumnPropNameInRow="corto1" msprop:Generator_ColumnPropNameInTable="corto1Column" msprop:Generator_UserColumnName="corto1" type="xs:string" minOccurs="0" />
+              <xs:element name="telef2" msprop:Generator_ColumnVarNameInTable="columntelef2" msprop:Generator_ColumnPropNameInRow="telef2" msprop:Generator_ColumnPropNameInTable="telef2Column" msprop:Generator_UserColumnName="telef2" type="xs:string" minOccurs="0" />
+              <xs:element name="desc2" msprop:Generator_ColumnVarNameInTable="columndesc2" msprop:Generator_ColumnPropNameInRow="desc2" msprop:Generator_ColumnPropNameInTable="desc2Column" msprop:Generator_UserColumnName="desc2" type="xs:string" minOccurs="0" />
+              <xs:element name="corto2" msprop:Generator_ColumnVarNameInTable="columncorto2" msprop:Generator_ColumnPropNameInRow="corto2" msprop:Generator_ColumnPropNameInTable="corto2Column" msprop:Generator_UserColumnName="corto2" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Telefonos" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

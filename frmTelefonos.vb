@@ -381,7 +381,11 @@ Public Class frmTelefonos
         lblTitulo.Text = loEmpresa.msNombre
         ' **************************************************************************
 
-        Me.ShowDialog()
+        If Me.MdiParent Is Nothing Then
+            Me.ShowDialog()
+        Else
+            Me.Show()
+        End If
 
     End Sub
 
@@ -638,18 +642,55 @@ Public Class frmTelefonos
     End Sub
 
     Private Sub mrImprimir()
-        Dim loImpresion As New prjPrinterNet.frmImpresion
-        Dim lsFormula As String
+        Dim loImpresion As New frmImpresion
 
         Cursor = Cursors.WaitCursor
-        lsFormula = "{telefonos.tip_tel}='" & msTipo & "'"
-        loImpresion.msFormula = lsFormula
-        loImpresion.msFichero = "rptTelefono.rpt"
-        loImpresion.mnEmpresa = mnEmpresa
-        loImpresion.msPapel = "A4"
 
-        loImpresion.mrVisualizar()
-        'loImpresion.mrListar()
+        Dim lsSql As String = ""
+        If lblTipo.Text.Equals("TELEFONOS FIJOS") Then
+            lsSql = "SELECT * from telefonos WHERE emp_tel=1 AND tip_tel='F' AND length(ext_tel)>3 ORDER BY cod_tel"
+        Else
+            lsSql = "SELECT * from telefonos WHERE emp_tel=1 AND tip_tel='M' AND length(num_tel)>6 ORDER BY cod_tel"
+        End If
+
+        Dim loDatos As DataTable = New prjControl.clsControlBD().mfoRecuperaDatos(False, lsSql, "telefonos")
+
+        Dim loDataSet As New dtsTelefonos
+        Dim loTelefonos As DataTable = loDataSet.Tables("Telefonos")
+
+        Dim lnIndice As Integer = 1
+        Dim loRegTelefono As DataRow
+        For Each loRegistro As DataRow In loDatos.Rows
+
+            If lnIndice Mod 2 = 0 Then
+                ' par
+                loRegTelefono("telef2") = loRegistro("num_tel")
+                loRegTelefono("corto2") = loRegistro("ext_tel")
+                loRegTelefono("desc2") = loRegistro("nom_tel")
+            Else
+                ' imprar
+                loRegTelefono = loTelefonos.NewRow
+                loRegTelefono("id") = lnIndice
+                loRegTelefono("telef1") = loRegistro("num_tel")
+                loRegTelefono("corto1") = loRegistro("ext_tel")
+                loRegTelefono("desc1") = loRegistro("nom_tel")
+                loTelefonos.Rows.Add(loRegTelefono)
+            End If
+
+            lnIndice = lnIndice + 1
+        Next
+
+        Dim oReport1 As New Microsoft.Reporting.WinForms.ReportDataSource("Telefonos", loTelefonos)
+
+        Dim loImpresora As New clsImpresora
+        loImpresora.mnCodigo = goProfile.mnImpresora
+        loImpresora.mrRecuperaDatos()
+
+        Dim loVisor As New frmVisorReport
+        loVisor.moReport.LocalReport.ReportEmbeddedResource = "prjTelefonos.rdlcTelefonos.rdlc"
+        loVisor.moReport.LocalReport.DataSources.Clear()
+        loVisor.moReport.LocalReport.DataSources.Add(oReport1)
+        loVisor.mrVisualizar(loImpresora.msPapel, False, loImpresora.msCola)
 
         Cursor = Cursors.Default
 
