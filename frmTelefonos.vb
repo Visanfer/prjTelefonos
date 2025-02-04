@@ -260,7 +260,7 @@ Public Class frmTelefonos
         'grdLineas
         '
         Me.grdLineas.BackColorBkg = System.Drawing.SystemColors.ControlLightLight
-        Me.grdLineas.BorderStyle = FlexCell.Grid.BorderStyleEnum.FixedSingle
+        Me.grdLineas.BorderStyle = FlexCell.BorderStyleEnum.FixedSingle
         Me.grdLineas.CheckedImage = CType(resources.GetObject("grdLineas.CheckedImage"), System.Drawing.Bitmap)
         Me.grdLineas.DisplayRowNumber = True
         Me.grdLineas.ExtendLastCol = True
@@ -268,9 +268,9 @@ Public Class frmTelefonos
         Me.grdLineas.MultiSelect = False
         Me.grdLineas.Name = "grdLineas"
         Me.grdLineas.Rows = 2
-        Me.grdLineas.ScrollBars = FlexCell.Grid.ScrollBarsEnum.Vertical
+        Me.grdLineas.ScrollBars = FlexCell.ScrollBarsEnum.Vertical
         Me.grdLineas.SelectionBorderColor = System.Drawing.Color.Gray
-        Me.grdLineas.SelectionMode = FlexCell.Grid.SelectionModeEnum.ByRow
+        Me.grdLineas.SelectionMode = FlexCell.SelectionModeEnum.ByRow
         Me.grdLineas.Size = New System.Drawing.Size(976, 494)
         Me.grdLineas.TabIndex = 7
         Me.grdLineas.UncheckedImage = CType(resources.GetObject("grdLineas.UncheckedImage"), System.Drawing.Bitmap)
@@ -546,10 +546,10 @@ Public Class frmTelefonos
 
     Private Sub mrSituaFocoGrid(ByVal lnLinea As Integer)
         ' hago esta historia para poder situar el foco en la primera fila *****
-        grdLineas.SelectionMode = FlexCell.Grid.SelectionModeEnum.ByCell
+        grdLineas.SelectionMode = FlexCell.SelectionModeEnum.ByCell
         grdLineas.Focus()
         grdLineas.Cell(lnLinea, 2).SetFocus()
-        grdLineas.SelectionMode = FlexCell.Grid.SelectionModeEnum.ByRow
+        grdLineas.SelectionMode = FlexCell.SelectionModeEnum.ByRow
         Send("{DOWN}")
     End Sub
 
@@ -602,7 +602,7 @@ Public Class frmTelefonos
     Private Sub mrGrabar(ByVal e As System.Windows.Forms.KeyEventArgs)
         ' graba el Telefono en la base de datos /******************
 
-        If mtEstado = EstadoVentana.NuevoRegistro Or _
+        If mtEstado = EstadoVentana.NuevoRegistro Or
            mtEstado = EstadoVentana.Mantenimiento Then
             ' compruebo que los campos obligatorios estan cumplimentados
             Dim loTelefono As clsTelefono = Nothing
@@ -754,9 +754,9 @@ Public Class frmTelefonos
         mtEstado = EstadoVentana.Consulta
         mrCargaTelefonos()
         ' ***************************************************
-        grdLineas.EnterKeyMoveTo = FlexCell.Grid.MoveToEnum.NextRow
+        grdLineas.EnterKeyMoveTo = FlexCell.MoveToEnum.NextRow
         grdLineas.SelectionBorderColor = Color.White
-        grdLineas.SelectionMode = FlexCell.Grid.SelectionModeEnum.ByRow
+        grdLineas.SelectionMode = FlexCell.SelectionModeEnum.ByRow
         grdLineas.Column(1).Visible = True
         grdLineas.AllowUserSort = True
         ' ***************************************************
@@ -791,9 +791,9 @@ Public Class frmTelefonos
             Else
                 mtEstado = EstadoVentana.Mantenimiento ' entra en modo mantenimiento
                 ' ************************************************************
-                grdLineas.EnterKeyMoveTo = FlexCell.Grid.MoveToEnum.NextCol
+                grdLineas.EnterKeyMoveTo = FlexCell.MoveToEnum.NextCol
                 grdLineas.SelectionBorderColor = Color.Red
-                grdLineas.SelectionMode = FlexCell.Grid.SelectionModeEnum.ByCell
+                grdLineas.SelectionMode = FlexCell.SelectionModeEnum.ByCell
                 'grdLineas.Selection.BackColor = Color.Aqua
                 grdLineas.Column(1).Visible = False
                 grdLineas.AllowUserSort = False
@@ -802,7 +802,7 @@ Public Class frmTelefonos
                 ' ************************************************************
                 lblTeclas.BackColor = Color.Tomato
                 lblTeclas.ForeColor = Color.White
-                lblTeclas.Text = " F1.-INSERTA LINEA       F2.-BORRA LINEA        " & _
+                lblTeclas.Text = " F1.-INSERTA LINEA       F2.-BORRA LINEA        " &
                                     "      F5-.GRABA           ESC-.SALIDA"
                 lblPrograma.Text = "TELEFONOS - MANTENIMIENTO"
                 'lblPrograma.BackColor = Color.Tomato
@@ -821,16 +821,16 @@ Public Class frmTelefonos
             .Column(1).Locked = False
             .Cols = 6
 
-            '.Column(3).UserSortIndicator = FlexCell.Grid.SortIndicatorEnum.Ascending
+            '.Column(3).UserSortIndicator = FlexCell.SortIndicatorEnum.Ascending
             .DisplayFocusRect = False
             .AllowUserResizing = False
             .ExtendLastCol = False
-            '.SelectionMode = FlexCell.Grid.SelectionModeEnum.ByCell
-            .SelectionMode = FlexCell.Grid.SelectionModeEnum.ByRow
-            .EnterKeyMoveTo = FlexCell.Grid.MoveToEnum.NextRow
-            .FixedRowColStyle = FlexCell.Grid.FixedRowColStyleEnum.Flat
-            .BorderStyle = FlexCell.Grid.BorderStyleEnum.FixedSingle
-            .DateFormat = FlexCell.Grid.DateFormatEnum.DMY
+            '.SelectionMode = FlexCell.SelectionModeEnum.ByCell
+            .SelectionMode = FlexCell.SelectionModeEnum.ByRow
+            .EnterKeyMoveTo = FlexCell.MoveToEnum.NextRow
+            .FixedRowColStyle = FlexCell.FixedRowColStyleEnum.Flat
+            .BorderStyle = FlexCell.BorderStyleEnum.FixedSingle
+            .DateFormat = FlexCell.DateFormatEnum.DMY
             .BackColorSel = Color.Navy
             .BackColorFixed = Color.FromKnownColor(KnownColor.ControlLight)
             '.BackColorBkg = Color.FromKnownColor(KnownColor.InactiveCaption)
@@ -843,11 +843,11 @@ Public Class frmTelefonos
             .Cell(0, 4).Text = "EXTENSION"
             .Cell(0, 5).Text = "ESTADO"
 
-            .Column(1).CellType = FlexCell.Grid.CellTypeEnum.TextBox
-            .Column(2).CellType = FlexCell.Grid.CellTypeEnum.TextBox
-            .Column(3).CellType = FlexCell.Grid.CellTypeEnum.TextBox
-            .Column(4).CellType = FlexCell.Grid.CellTypeEnum.TextBox
-            .Column(5).CellType = FlexCell.Grid.CellTypeEnum.TextBox
+            .Column(1).CellType = FlexCell.CellTypeEnum.TextBox
+            .Column(2).CellType = FlexCell.CellTypeEnum.TextBox
+            .Column(3).CellType = FlexCell.CellTypeEnum.TextBox
+            .Column(4).CellType = FlexCell.CellTypeEnum.TextBox
+            .Column(5).CellType = FlexCell.CellTypeEnum.TextBox
 
             '.Column(0).Visible = False
             .Column(1).Width = 0
@@ -857,8 +857,8 @@ Public Class frmTelefonos
             .Column(5).Width = 60
             .Column(5).Visible = False
 
-            .Column(2).Alignment = FlexCell.Grid.AlignmentEnum.CenterCenter
-            .Column(3).Alignment = FlexCell.Grid.AlignmentEnum.LeftCenter
+            .Column(2).Alignment = FlexCell.AlignmentEnum.CenterCenter
+            .Column(3).Alignment = FlexCell.AlignmentEnum.LeftCenter
 
             .Column(2).MaxLength = 20
             .Column(3).MaxLength = 60
@@ -1000,6 +1000,17 @@ Public Class frmTelefonos
 
     Private Sub grdLineas_RowColChange(ByVal Sender As Object, ByVal e As FlexCell.Grid.RowColChangeEventArgs) Handles grdLineas.RowColChange
         mrPintaNumero()
+    End Sub
+
+    Private Sub grdLineas_GotFocus(sender As Object, e As EventArgs) Handles grdLineas.GotFocus
+        Dim loGrid As FlexCell.Grid = sender
+        If loGrid.SelectionMode = FlexCell.SelectionModeEnum.ByRow Then
+            loGrid.Locked = True
+            loGrid.BackColorActiveCellSel = loGrid.BackColorSel
+        Else
+            loGrid.Locked = False
+            loGrid.BackColorActiveCellSel = Color.White
+        End If
     End Sub
 
 #End Region
