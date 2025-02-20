@@ -395,11 +395,13 @@ Public Class frmTelefonos
             Case 1
                 msTipo = "M"
                 mrConsulta()
-                mrSituaFocoGrid(0)
+                grdLineas.Focus()
+                grdLineas.Range(1, 2, 1, 2).SelectCells()
             Case 2
                 msTipo = "F"
                 mrConsulta()
-                mrSituaFocoGrid(0)
+                grdLineas.Focus()
+                grdLineas.Range(1, 2, 1, 2).SelectCells()
             Case 3
                 Me.Close()
         End Select
@@ -492,6 +494,8 @@ Public Class frmTelefonos
                     mtEstado = EstadoVentana.Salida
                     mrLimpiaFormulario()
                     tabMenu.evtFocus()
+                Else
+                    grdLineas.Focus()
                 End If
 
             Case Keys.Enter
@@ -515,7 +519,7 @@ Public Class frmTelefonos
             Case Keys.F2
                 If lsControl = "grdLineas" And mtEstado <> EstadoVentana.Consulta Then mrBorrado()
             Case Keys.F3
-                If lsControl = "grdLineas" Then mrBuscarCadena()
+                If lsControl = "txtBusqueda" Then mrBuscarCadena()
             Case Keys.F5
                 mrGrabar(e)
         End Select
@@ -539,18 +543,9 @@ Public Class frmTelefonos
                 End If
             Next
             If Not lbEncontrado Then lnI = 1
-            mrSituaFocoGrid(lnI - 1)
+            grdLineas.Range(lnI, 2, lnI, 2).SelectCells()
         End If
 
-    End Sub
-
-    Private Sub mrSituaFocoGrid(ByVal lnLinea As Integer)
-        ' hago esta historia para poder situar el foco en la primera fila *****
-        grdLineas.SelectionMode = FlexCell.SelectionModeEnum.ByCell
-        grdLineas.Focus()
-        grdLineas.Cell(lnLinea, 2).SetFocus()
-        grdLineas.SelectionMode = FlexCell.SelectionModeEnum.ByRow
-        Send("{DOWN}")
     End Sub
 
     Private Sub mrLimpiaFormulario()
@@ -757,6 +752,7 @@ Public Class frmTelefonos
         grdLineas.EnterKeyMoveTo = FlexCell.MoveToEnum.NextRow
         grdLineas.SelectionBorderColor = Color.White
         grdLineas.SelectionMode = FlexCell.SelectionModeEnum.ByRow
+        grdLineas.Locked = True
         grdLineas.Column(1).Visible = True
         grdLineas.AllowUserSort = True
         ' ***************************************************
@@ -795,6 +791,7 @@ Public Class frmTelefonos
                 grdLineas.SelectionBorderColor = Color.Red
                 grdLineas.SelectionMode = FlexCell.SelectionModeEnum.ByCell
                 'grdLineas.Selection.BackColor = Color.Aqua
+                grdLineas.Locked = False
                 grdLineas.Column(1).Visible = False
                 grdLineas.AllowUserSort = False
                 grdLineas.Cell(grdLineas.ActiveCell.Row, 2).SetFocus()
